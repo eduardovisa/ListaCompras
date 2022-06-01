@@ -1,59 +1,59 @@
+let element = document.getElementById("totalPrecio");
+element.innerHTML = "Total en precio";
 
+let txtNombre = document.getElementById("name");
+// txtNombre.value = "Leche Semidescremada";
+// console.log(txtNombre.value);
+let txtNumber = document.getElementById("Number");
 
-    let element = document.getElementById("totalPrecio");
-    element.innerHTML="Total en precio";
+// let campos = document.getElementsByClassName("campo");
+// // console.log(campos.length);
+// campos[0].value = "Leche descremada deslactosada light=Agua";
+// console.log(campos[0].value);
+// console.log(campos);
 
-    let txtNombre = document.getElementById("Name");
-    //txtNombre.value="Leche Semidescremada";
-    //console.log(txtNombre.value);
-    let txtNumber = document.getElementById("Number");
+// for (let i = 0; i < campos.length; i++) {
+//     campos[i].style.border = "red thin solid";
+// } // for
 
-    // let campos = document.getElementsByClassName("campo");
-    // campos[0].value = "Leche descremada deslactosada light=Agua";
-    // console.log( campos[0].value);
-    // console.log(campos);
+// let spans = document.getElementsByTagName("span");
+// for (let i = 0; i < spans.length; i++) {
+//     console.log(spans[i].textContent);
+// } // for
 
-    // for (let i=0; i<campos.length; i++) {
-    //     campos[i].style.border="red thin solid";
-    // }//for i
+let tabla = document.getElementById("tablaListaCompras");
+let cuerpoTabla = tabla.getElementsByTagName("tbody");
 
-    // let spans = document.getElementsByTagName("span");
-    // for (let i=0; i<spans.length; i++) {
-    //     console.log(spans[i].textContent);
-    // }//for i
-
-    let tabla = document.getElementById("tablaListaCompras");
-    let cuerpoTabla = tabla.getElementsByTagName("tbody");
-
-    // cuerpoTabla[0].innerHTML =  `<tr>
-    // <th scope="row">1</th>
-    // <td>Leche descremada</td>
-    // <td>3</td>
-    // <td>$ 23.00</td>
-    // </tr> `;
-
+// cuerpoTabla[0].innerHTML = `
+//     <tr>
+//         <th scope="row">1</th>
+//         <td>Leche descremada</td></td>
+//         <td>3</td>
+//         <td>$ 23</td>
+//     </tr>
+// `;
 
 let agregar = document.getElementById("btnAgregar");
+// console.log(agregar);
+// agregar.onclick = 
 
-agregar.addEventListener ("click", (event)=> {
+let indice = 1;
+agregar.addEventListener("click", (event) => {
+    // console.log("click en el botón agregar", event);
     let precio = Math.random() * 50;
-    let tmp = `<tr>
-     <th scope="row">1</th>
-     <td>${txtNombre.value}</td>
-     <td>${txtNumber.value}</td>
-     <td>$ ${precio}</td>
-     </tr> `;
-    console.log(tmp);
-    cuerpoTabla[0].innerHTML += tmp;
-    txtNumber.value="";
-    txtNombre.value="";
-    txtNombre.focus();
+    tmp = `
+        <tr>
+            <th scope="row">${indice}</th>
+            <td>${txtNombre.value}</td>
+            <td>${txtNumber.value}</td>
+            <td>$ ${precio}</td>
+        </tr>`;
+        cuerpoTabla[0].innerHTML += tmp;
+        txtNombre.value = "";
+        txtNumber.value = "";
+        txtNombre.focus();
 
-    }
-);
-
-
-
-
-
-//agregar.onclick = 
+        indice++;
+    // console.log(txtNombre.value, txtNumber.value);
+    // console.log(tmp);
+});
