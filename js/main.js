@@ -101,6 +101,7 @@ agregar.addEventListener("click", (event) => {
     costoTotal += parseFloat(txtNumber.value) * precio;
     let cantidad = parseFloat(txtNumber.value);
     totalEnProductos += (cantidad<1)? Math.ceil(cantidad):parseInt(cantidad);
+    
     tmp = `
     <tr>
     <th scope="row">${contador}</th>
@@ -108,10 +109,15 @@ agregar.addEventListener("click", (event) => {
     <td>${txtNumber.value}</td>
     <td>$ ${precio}</td>
     </tr>`;
-    document.getElementById("contadorProductos").innerHTML = contador;
     cuerpoTabla[0].innerHTML += tmp;
-    total.innerHTML = `$ ${costoTotal.toFixed(2)}`;
+    document.getElementById("contadorProductos").innerHTML = contador;
     document.getElementById("totalProductos").innerHTML = totalEnProductos;
+    total.innerHTML = `$ ${costoTotal.toFixed(2)}`;
+
+    // window.localStorage
+    localStorage.setItem("contadorProductos", contador);
+    localStorage.setItem("totalProductos", totalEnProductos);
+    localStorage.setItem("precioTotal", costoTotal.toFixed(2));
 
     txtNombre.value = "";
     txtNumber.value = "";
@@ -131,4 +137,19 @@ txtNombre.addEventListener("blur", (event) => {
 
 txtNumber.addEventListener("blur", (event) => {
     event.target.value = event.target.value.trim();
+});
+
+window.addEventListener("load", function() {
+    if (localStorage.getItem("contadorProductos") != null) {
+        contador = parseInt(localStorage.getItem("contadorProductos"));
+        document.getElementById("contadorProductos").innerHTML = contador;
+    } // contadorProductos
+    if (localStorage.getItem("totalProductos") != null) {
+        totalEnProductos = parseInt(localStorage.getItem("totalProductos"));
+        document.getElementById("totalProductos").innerHTML = totalEnProductos;
+    } // if totalProductos
+    if (localStorage.getItem("precioTotal") != null) {
+        costoTotal = parseFloat(localStorage.getItem("precioTotal"));
+        document.getElementById("precioTotal").innerHTML = `$ ${costoTotal.toFixed(2)}`;
+    } // if precioTotal
 });
