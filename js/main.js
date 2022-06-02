@@ -1,5 +1,6 @@
 let contador = 1;
 let costoTotal = 0;
+let totalEnProductos = 0;
 let element = document.getElementById("totalPrecio");
 element.innerHTML = "Total en precio";
 
@@ -95,10 +96,11 @@ agregar.addEventListener("click", (event) => {
 
     txtNombre.style.border = "";
     txtNumber.style.border = "";
-
     document.getElementById("alertValidaciones").style.display = "none";
     let precio = (Math.floor((Math.random() * 50) * 100)) / 100;
     costoTotal += parseFloat(txtNumber.value) * precio;
+    let cantidad = parseFloat(txtNumber.value);
+    totalEnProductos += (cantidad<1)? Math.ceil(cantidad):parseInt(cantidad);
     tmp = `
     <tr>
     <th scope="row">${contador}</th>
@@ -109,6 +111,8 @@ agregar.addEventListener("click", (event) => {
     document.getElementById("contadorProductos").innerHTML = contador;
     cuerpoTabla[0].innerHTML += tmp;
     total.innerHTML = `$ ${costoTotal.toFixed(2)}`;
+    document.getElementById("totalProductos").innerHTML = totalEnProductos;
+
     txtNombre.value = "";
     txtNumber.value = "";
     txtNombre.focus();
